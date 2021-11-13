@@ -6,6 +6,7 @@
 #include "Employee.h"
 #include "parser.h"
 #include "menu.h"
+#include "Controller.h"
 
 
 /** \brief Carga los datos de los empleados desde el archivo data.csv (modo texto).
@@ -52,7 +53,7 @@ int controller_loadFromText(char* path, LinkedList* pArrayListEmployee)
  * \return int
  *
  */
-int controller_loadFromBinary(char* path ,LinkedList* pArrayListEmployee, int* nextId)
+int controller_loadFromBinary(char* path ,LinkedList* pArrayListEmployee)
 {
     int isOkey = 0;
     FILE* f = NULL;
@@ -97,18 +98,17 @@ int controller_loadFromBinary(char* path ,LinkedList* pArrayListEmployee, int* n
  */
 int controller_addEmployee(LinkedList* pArrayListEmployee, int* pId)
 {
-    int id;
-    int isOkey=0;
+	int id;
+	int isOkey=0;
     char nombre[128];
     int horasTrabajadas;
     int sueldo;
     Employee* auxEmp = NULL;
-    if(pArrayListEmployee != NULL && pId != NULL)
+    id = *pId;
+    if(pArrayListEmployee != NULL)
     {
-        guardarId();
         printf("ALTA EMPLEADO \n\n");
         auxEmp = employee_new();
-        printf("Id: %d\n", *pId);
         printf("Ingrese Nombre del Empleado: ");
         fflush(stdin);
         gets(nombre);
@@ -134,11 +134,10 @@ int controller_addEmployee(LinkedList* pArrayListEmployee, int* pId)
             fflush(stdin);
             scanf("%d", &sueldo);
         }
-        id = *pId;
+        id++;
         employee_setId(auxEmp, id);
         ll_add(pArrayListEmployee, auxEmp);
         isOkey=1;
-        (*pId)++;
     }
     return isOkey;
 }

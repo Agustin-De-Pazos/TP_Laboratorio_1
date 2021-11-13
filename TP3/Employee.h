@@ -8,6 +8,11 @@ typedef struct
     int sueldo;
 }Employee;
 
+
+
+#endif // employee_H_INCLUDED
+
+
 Employee* employee_new();
 Employee* employee_newParametros(char* idStr,char* nombreStr,char* horasTrabajadasStr, char* sueldoStr);
 void employee_delete(Employee* p);
@@ -30,5 +35,3 @@ int mostrarEmpleado(Employee* e);
 int employee_SortSueldo(void* item1, void* item2);
 int employee_SortHoras(void* item1, void* item2);
 int employee_SortId(void* item1, void* item2);
-
-#endif // employee_H_INCLUDED
