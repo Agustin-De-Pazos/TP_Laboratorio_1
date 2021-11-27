@@ -79,7 +79,6 @@ int ModifyEmployee(eEmployee list[], int len)
             printf("\nThis is the client you want to modify s/n?: ");
             fflush(stdin);
             scanf("%c",&confirm);
-            fflush(stdin);
             if(confirm == 's')
             {
                 do
