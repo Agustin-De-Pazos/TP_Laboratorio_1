@@ -58,7 +58,7 @@ int totalAverageSalary(eEmployee* list, int len)
     int contador= 0;
     int contador2 = 0;
     int acumulador = 0;
-    int promedioTotal;
+    float promedioTotal;
     if(list != NULL && len >0)
     {
         isOkey = 0;
@@ -70,7 +70,11 @@ int totalAverageSalary(eEmployee* list, int len)
                 acumulador = acumulador + list[i].salary;
             }
         }
-        promedioTotal = (float) (acumulador / contador);
+        if(contador != 0)
+        {
+        	promedioTotal =   (float) acumulador / contador;
+        }
+
         for(int i = 0; i<len; i++)
         {
             if(list[i].isEmpty == FULL && list[i].salary > promedioTotal)
@@ -79,7 +83,7 @@ int totalAverageSalary(eEmployee* list, int len)
             }
         }
         printf("the number of employees is: %d\n", contador);
-        printf("the average salary of all employees is %f\n", (float) promedioTotal);
+        printf("the average salary of all employees is %f\n", promedioTotal);
         printf("the number of employees who exceed the average salary are %d\n", contador2);
     }
     return isOkey;
